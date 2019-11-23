@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE logback>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 個々のloggerごとにレベルを指定する(additivity is false to avoid duplicate logging) -->
+    <logger name="org.apache.ignite.internal.processors.datastreamer"
+            level="debug" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="org.example.sampleLog" level="info" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <!-- loggerで指定されないログ -->
+    <root level="error">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
